@@ -1,0 +1,70 @@
+9. Create a Database Instance in the Cloud Using Amazon RDS
+Aim
+To create a database instance in the cloud using Amazon Relational Database Service (Amazon
+RDS) and connect to the database.
+Software Requirements
+ Amazon Web Services (AWS) account
+ Web browser
+ Amazon RDS
+ MySQL database engine (or another supported engine)
+Procedure
+Step 1: Sign in to AWS
+1. Open the AWS Management Console: https://console.aws.amazon.com/
+2. Sign in using your AWS account credentials.
+3. Search for RDS in the AWS console search bar.
+4. Select Amazon RDS.
+Step 2: Create a Database
+1. Select Databases from the navigation panel.
+2. Click Create database.
+3. Choose Standard create.
+4. Select MySQL as the database engine.
+5. Choose a suitable engine version.
+Step 3: Configure Database Settings
+1. Select a template such as Free tier, if available for your account.
+2. Enter the DB instance identifier, for example, mydb-instance.
+3. Enter a master username, such as admin.
+4. Set a strong master password and confirm it.
+5. Choose an instance class and storage size according to the lab requirements.
+Step 4: Configure Connectivity
+1. Select the appropriate Virtual Private Cloud (VPC).
+2. Configure the DB subnet group.
+3. Choose whether to enable public access.
+4. Select or create a security group.
+5. Allow inbound MySQL traffic on port 3306 only from your authorized client IP address
+or application security group.
+For a lab, prefer private access when possible. Do not expose the database to all IP addresses.
+Step 5: Create the Instance
+1. Review the database configuration.
+2. Click Create database.
+3. Wait until the database status changes to Available.
+4. Select the database instance to view its details.
+Step 6: Obtain the Endpoint
+1. Open the database instance details.
+2. Find the Connectivity & security section.
+3. Copy the database endpoint and port number.
+4. The default MySQL port is 3306.
+Step 7: Connect to the Database
+If MySQL client software is installed and network access is configured, execute:
+mysql -h <RDS-ENDPOINT> -P 3306 -u admin -p
+Replace <RDS-ENDPOINT> with the endpoint displayed in the AWS console. Enter the master
+password when prompted.
+Step 8: Create a Database and Table
+After connecting, execute:
+CREATE DATABASE college;
+USE college;
+CREATE TABLE students (
+ id INT PRIMARY KEY,
+ name VARCHAR(50),
+ department VARCHAR(30)
+);
+INSERT INTO students
+VALUES (1, 'Ravi', 'CSE');
+SELECT * FROM students;
+Expected output:
++----+------+------------+
+| id | name | department |
++----+------+------------+
+| 1 | Ravi | CSE |
++----+------+------------+
+Result
+A cloud database instance was created successfully using Amazon RDS. A
